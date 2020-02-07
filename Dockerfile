@@ -1,7 +1,7 @@
-FROM openjdk:jre
+FROM openjdk:7-jre
 
 RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list \
-    && printf "deb http://www.deb-multimedia.org jessie main non-free\ndeb-src http://www.deb-multimedia.org jessie main non-free\n" >> /etc/apt/sources.list \
+    && printf "deb http://www.deb-multimedia.org stretch main non-free\ndeb-src http://www.deb-multimedia.org stretch main non-free\n" >> /etc/apt/sources.list \
     && apt-get update && apt-get install -y --force-yes deb-multimedia-keyring \
     && apt-get update && apt-get install -y --force-yes --no-install-recommends --fix-missing \
         imagemagick \
@@ -20,7 +20,7 @@ RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/dem
 
 # Install FFMpeg
 RUN cd /opt \
-    && curl -sL "http://ffmpeg.org/releases/ffmpeg-2.7.2.tar.bz2" | tar -xvj \
+    && curl -sL "http://ffmpeg.org/releases/ffmpeg-4.2.2.tar.bz2" | tar -xvj \
     && cd ffmpeg-2.7.2 \
     && ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-postproc \
     --enable-libfaac --enable-libopencore-amrnb --enable-libopencore-amrwb \
@@ -31,9 +31,9 @@ RUN cd /opt \
 
 # Install Razuna
 RUN cd /opt \
-    && curl -sL "http://razuna.org/razuna-tomcat.cfm?v=1.8.6" > razuna.zip \
+    && curl -sL "http://razuna.org/razuna-tomcat.cfm?v=1.9.6" > razuna.zip \
     && unzip razuna.zip \
-    && mv razuna_tomcat_1_8_6 razuna
+    && mv razuna_tomcat_1_9_6 razuna
 
 EXPOSE 8080
 
