@@ -1,4 +1,4 @@
-# Razuna
+# Razuna 1.9.6
 
 This is an image running the [Razuna Digital Management System](http://www.razuna.org/) on an [openjdk base image](https://hub.docker.com/_/openjdk/).
 
@@ -13,7 +13,7 @@ This is an image running the [Razuna Digital Management System](http://www.razun
 1. Run the image
 
    ```bash
-   docker run --name razuna -p 8080:8080 -d netresearch/razuna
+   docker run --name razuna -p 8080:8080 -d ipunktbs/razuna:1.9.6.0
    ```
 
 2. Navigate to http://whateveryourhostis:8080/razuna - the default username as well as the password are **admin**.
